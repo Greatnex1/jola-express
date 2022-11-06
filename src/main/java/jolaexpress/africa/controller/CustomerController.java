@@ -2,19 +2,25 @@ package jolaexpress.africa.controller;
 
 import jolaexpress.africa.data.dto.request.CustomerRegistrationRequest;
 import jolaexpress.africa.data.model.Customer;
-import jolaexpress.africa.exception.CustomerAlreadyExistException;
-import jolaexpress.africa.service.CustomerServiceImpl;
-import lombok.AllArgsConstructor;
+import jolaexpress.africa.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Slf4j
 @RestController
-@RequestMapping("api/customer/register")
-public record CustomerController(CustomerServiceImpl customerService) {
-@PostMapping()
+@RequestMapping(path="api/v1/customer")
+public class CustomerController{
+    private final CustomerService customerService;
+
+    @Autowired
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+    }
+
+    @PostMapping("/register")
     public void registerCustomer( @RequestBody CustomerRegistrationRequest customerRequest){
         log.info("a new customer registration -> {}", customerRequest);
         customerService.register(customerRequest);
