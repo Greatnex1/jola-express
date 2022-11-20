@@ -1,8 +1,7 @@
 package jolaexpress.africa.service;
 
 import jolaexpress.africa.data.dto.request.CustomerRegistrationRequest;
-import jolaexpress.africa.data.dto.respond.CustomerRegistrationResponse;
-import jolaexpress.africa.data.model.Customer;
+import jolaexpress.africa.data.dto.response.CustomerRegistrationResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -56,4 +55,9 @@ class CustomerServiceImplTest {
     @Test
     void customerRepository() {
     }
+    @Test
+    void deleteCustomer(){
+
+    }
+
 }
