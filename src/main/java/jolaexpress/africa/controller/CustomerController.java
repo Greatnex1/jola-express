@@ -12,7 +12,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping(path="api/v1/customer")
-public class CustomerController{
+public class CustomerController {
     private final CustomerService customerService;
 
     @Autowired
@@ -21,23 +21,29 @@ public class CustomerController{
     }
 
     @PostMapping("/register")
-    public void registerCustomer( @RequestBody CustomerRegistrationRequest customerRequest){
+    public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRequest) {
         log.info("a new customer registration -> {}", customerRequest);
         customerService.register(customerRequest);
 
     }
-  @GetMapping()
-    public  List <Customer> getCustomers(){
-    return customerService.getAllCustomers();
-  }
-  @PutMapping(path = "{customerId}")
+
+    @GetMapping()
+    public List<Customer> getCustomers() {
+        return customerService.getAllCustomers();
+    }
+
+    @DeleteMapping(path = "{customerId}")
+    public void deleteCustomer(@PathVariable("customerId")Long customerId){
+        customerService.deleteCustomer(customerId);
+    }
+
+    @PutMapping(path = "{customerId}")
     public void editCustomerProfile(@PathVariable Long customerId,
-                                    @RequestParam(required = false)String email){
-    customerService.updateProfile(customerId,email);
+                                    @RequestParam(required = false) String email) {
+        customerService.updateProfile(customerId, email);
 
 
+    }
 
-
-  }
 
 }
