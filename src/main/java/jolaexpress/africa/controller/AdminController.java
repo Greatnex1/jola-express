@@ -17,7 +17,6 @@ import javax.validation.Valid;
 @RequestMapping(path="api/v1/admin")
 public class AdminController {
     private final AdminService adminService;
-
     @Autowired
     public AdminController(AdminService adminService) {
         this.adminService = adminService;
@@ -29,6 +28,11 @@ public class AdminController {
 @GetMapping("/all_admin")
     public ResponseEntity<?>getAllAdmins(){
         return ResponseEntity.ok(adminService.getAllAdmin());
+}
+@DeleteMapping(path = "{adminId}")
+    public void deleteAdmin(@PathVariable ("adminId")Long adminId){
+        adminService.deleteAdmin(adminId);
+
 }
 
 
