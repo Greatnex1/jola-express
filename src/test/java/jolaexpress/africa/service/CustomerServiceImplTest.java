@@ -14,50 +14,57 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @SpringBootTest
 @Slf4j
 class CustomerServiceImplTest {
-   @Autowired
-   private  CustomerService customerService;
+    @Autowired
+    private CustomerService customerService;
 
-   private CustomerRegistrationRequest request;
+    private CustomerRegistrationRequest request;
+    private CustomerRegistrationResponse response;
 
     @BeforeEach
     void setUp() {
-      request = CustomerRegistrationRequest
-              .builder()
-              .email("wiz@email.com")
-              .firstName("wiz")
-              .lastName("snow")
-              .phoneNumber("08174697745")
-              .password("2222")
-              .build();
+        request = CustomerRegistrationRequest
+                .builder()
+                .email("wiz@email.com")
+                .firstName("wiz")
+                .lastName("james")
+                .phoneNumber("08174697745")
+                .password("2222")
+                .build();
+
+        response = customerService.register(request);
+
     }
 
 
     @Test
     void registerCustomer() {
-       CustomerRegistrationResponse response = customerService.register(request);
-      assertThat(response).isNotNull();
-       assertThat(response.getMessage()).isNotNull();
-     //  assertThat(response.getId()).isGreaterThan(0);
+        assertThat(response).isNotNull();
+        assertThat(response.getMessage()).isNotNull();
+       // assertThat(response.getId()).isGreaterThan(0);
     }
 
     @Test
     void getCustomer() {
         assertThat(request).isNotNull();
-        log.info(" registered customer email -> {}",request.getEmail());
-        assertEquals("wiz@email.com",request.getEmail());
+        log.info(" registered customer email -> {}", request.getEmail());
+       assertEquals("wiz@email.com", request.getEmail());
 
-;    }
+        ;
+    }
 
     @Test
     void updateProfile() {
+        request.setFirstName("james");
+        assertThat(request.getFirstName()).isEqualTo("james");
     }
+
+
 
     @Test
-    void customerRepository() {
-    }
-    @Test
-    void deleteCustomer(){
+    void deleteCustomer() {
+        customerService.deleteCustomer(1L);
+      assertThat(customerService.getAllCustomers().isEmpty());
+      log.info("customer removed successfully");
 
     }
-
 }
