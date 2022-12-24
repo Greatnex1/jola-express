@@ -31,6 +31,7 @@ public class AdminController {
 }
 @DeleteMapping(path = "{adminId}")
     public void deleteAdmin(@PathVariable ("adminId")Long adminId){
+        log.info("Admin records deleted");
         adminService.deleteAdmin(adminId);
 
 }
