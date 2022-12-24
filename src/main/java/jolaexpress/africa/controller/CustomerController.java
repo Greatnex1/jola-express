@@ -2,6 +2,7 @@ package jolaexpress.africa.controller;
 
 import jolaexpress.africa.data.dto.request.CustomerRegistrationRequest;
 import jolaexpress.africa.data.model.Customer;
+import jolaexpress.africa.exception.CustomerAlreadyExistException;
 import jolaexpress.africa.service.CustomerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class CustomerController {
     }
 
     @PostMapping("/register")
-    public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRequest) {
+    public void registerCustomer(@RequestBody CustomerRegistrationRequest customerRequest) throws CustomerAlreadyExistException {
         log.info("a new customer registration -> {}", customerRequest);
         customerService.register(customerRequest);
 
@@ -39,7 +40,7 @@ public class CustomerController {
 
     @PutMapping(path = "{customerId}")
     public void editCustomerProfile(@PathVariable Long customerId,
-                                    @RequestParam(required = false) String email) {
+                                    @RequestParam(required = false) String email) throws CustomerAlreadyExistException {
         customerService.updateProfile(customerId, email);
 
 
