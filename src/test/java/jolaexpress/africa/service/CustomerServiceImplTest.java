@@ -2,6 +2,7 @@ package jolaexpress.africa.service;
 
 import jolaexpress.africa.data.dto.request.CustomerRegistrationRequest;
 import jolaexpress.africa.data.dto.response.CustomerRegistrationResponse;
+import jolaexpress.africa.exception.CustomerAlreadyExistException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +22,7 @@ class CustomerServiceImplTest {
     private CustomerRegistrationResponse response;
 
     @BeforeEach
-    void setUp() {
+    void setUp() throws CustomerAlreadyExistException {
         request = CustomerRegistrationRequest
                 .builder()
                 .email("wiz@email.com")
