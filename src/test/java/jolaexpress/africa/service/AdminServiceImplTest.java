@@ -50,6 +50,10 @@ class AdminServiceImplTest {
 
     @Test
     void updateProfile() {
+        log.info("previous password -> {}", adminRequest.getPassword());
+        adminRequest.setPassword("2222");
+        assertThat(adminRequest.getPassword()).isEqualTo("2222");
+        log.info("password changed -> {}",adminRequest.getPassword());
     }
 
     @Test
