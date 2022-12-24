@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-public class Customer {
+public class Customer extends  JolaExpressUser{
     @Id
     @SequenceGenerator(name = "customer_id_sequence",
     sequenceName = "customer_id_sequence")
@@ -23,4 +23,5 @@ public class Customer {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String password;
 }
