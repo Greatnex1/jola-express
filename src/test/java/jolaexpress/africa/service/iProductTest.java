@@ -60,7 +60,8 @@ class iProductTest {
     @Test
     void uploadProductImage() {
         assertThat(productResponse).isNotNull();
-     //   assertThat(productRequest.getProductName()).isEqualTo("Peak");
+       assertThat(productRequest.getProductName()).isEqualTo("Peak");
+       log.info("{} is the name of product uploaded",productRequest.getProductName());
     }
 
     @Test
@@ -71,7 +72,7 @@ class iProductTest {
     void getProductById() throws ProductNotFoundException {
         Product productFound = productService.getProductById(productResponse.getProductId()) ;
         assertThat(productFound).isNotNull();
-        log.info("produt :: {}",productFound);
+        log.info("product :: {}",productFound);
     }
 
     @Test
