@@ -1,7 +1,9 @@
 package jolaexpress.africa.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jolaexpress.africa.data.dto.request.AllItemRequest;
 import jolaexpress.africa.data.dto.request.UploadProductRequest;
+import jolaexpress.africa.data.dto.response.DeleteProductResponse;
 import jolaexpress.africa.data.dto.response.UploadProductResponse;
 import jolaexpress.africa.data.model.Category;
 import jolaexpress.africa.data.model.Product;
@@ -34,6 +36,7 @@ class iProductTest {
     private UploadProductRequest productRequest;
 
     private UploadProductResponse productResponse;
+    private DeleteProductResponse deleteProductResponse;
 
    // private ProductRepository productRepo;
 
@@ -66,13 +69,15 @@ class iProductTest {
 
     @Test
     void updateProductDetails() {
+        ObjectMapper mapper = new ObjectMapper();
+        UploadProductResponse updateResponse = null;
     }
 
     @Test
     void getProductById() throws ProductNotFoundException {
         Product productFound = productService.getProductById(productResponse.getProductId()) ;
         assertThat(productFound).isNotNull();
-        log.info("product :: {}",productFound);
+        log.info("product :: {}",productFound.getName());
     }
 
     @Test
@@ -90,7 +95,8 @@ class iProductTest {
 
     @Test
     void deleteProduct() {
-
+//deleteProductResponse = productService.deleteProduct(productResponse.getProductId());
         assertThat(productService.deleteProduct(productResponse.getProductId()));
+      //  log.info( " products uploaded  {}", productService.deleteProduct(productResponse.getProductId()));
     }
 }
