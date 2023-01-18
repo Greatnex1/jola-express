@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService{
     private final ModelMapper mapper = new ModelMapper();
 private CustomerRepository customerRepository;
     @Override
-    public CustomerRegistrationResponse register(CustomerRegistrationRequest request) {
+    public CustomerRegistrationResponse register(CustomerRegistrationRequest request) throws CustomerAlreadyExistException {
         //ensuring that a user does not register twice with the same email
         var customerExist =  customerRepository.findCustomerByEmail(request.getEmail());
         if(customerExist.isPresent())throw new CustomerAlreadyExistException(String.format("email %s already taken"));
@@ -47,7 +47,7 @@ private CustomerRepository customerRepository;
     }
 
     @Override
-    public void updateProfile(Long customerId, String email) {
+    public void updateProfile(Long customerId, String email) throws CustomerAlreadyExistException {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(()-> new IllegalStateException(String.format("customer with id %d not found")));
    if(email != null && email.length()> 0 && !Objects.equals(customer.getEmail(),email)){
