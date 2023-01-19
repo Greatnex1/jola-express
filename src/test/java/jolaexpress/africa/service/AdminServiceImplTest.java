@@ -30,16 +30,13 @@ class AdminServiceImplTest {
                 .email("whitewinnie@email.com")
                 .password("password1234")
                 .build();
-
     }
-
     @Test
     void registerAdmin() throws AdminAlreadyExistException {
         AdminRegistrationResponse response = adminService.register(adminRequest);
         assertThat(response).isNotNull();
 
     }
-    //    assertNotNull(adminRequest);
 
 
     @Test
@@ -47,7 +44,6 @@ class AdminServiceImplTest {
         assertThat(adminRequest).isNotNull();
         log.info("registered admin email -> {}",adminRequest.getEmail());
     }
-
     @Test
     void updateProfile() {
         log.info("previous password -> {}", adminRequest.getPassword());
