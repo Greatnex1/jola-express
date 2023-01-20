@@ -77,7 +77,7 @@ class iProductTest {
     void getProductById() throws ProductNotFoundException {
         Product productFound = productService.getProductById(productResponse.getProductId()) ;
         assertThat(productFound).isNotNull();
-        log.info("product :: {}",productFound.getName());
+        log.info("product :: {}",productFound.getProductName());
     }
 
     @Test
