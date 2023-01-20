@@ -3,6 +3,7 @@ package jolaexpress.africa.data.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Setter
 @Getter
@@ -12,16 +13,16 @@ import javax.persistence.*;
 @Entity
 public class Customer extends  JolaExpressUser{
     @Id
-    @SequenceGenerator(name = "customer_id_sequence",
-    sequenceName = "customer_id_sequence")
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "customer_id_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private  Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String phoneNumber;
     private String password;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Address address;
+
+    private Date createDateTIme;
 }
