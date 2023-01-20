@@ -18,9 +18,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private  Long id;
-    private  String name;
+    private  String productName;
     private  String description;
-    private BigDecimal price = BigDecimal.ZERO;
+    private BigDecimal productPrice = BigDecimal.ZERO;
     private int quantity;
  @ElementCollection(fetch = FetchType.EAGER)
    private List<Category> categories = new ArrayList<>();
