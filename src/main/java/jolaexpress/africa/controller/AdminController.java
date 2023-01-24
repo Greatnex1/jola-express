@@ -30,9 +30,8 @@ public class AdminController {
         return ResponseEntity.ok(adminService.getAllAdmin());
 }
 @DeleteMapping(path = "{adminId}")
-    public void deleteAdmin(@PathVariable ("adminId")Long adminId){
-        log.info("Admin records deleted");
-        adminService.deleteAdmin(adminId);
+public ResponseEntity<?> removeAdmin(@PathVariable Long adminId){
+    return ResponseEntity.ok("Admin record deleted successfully");
 
 }
 
