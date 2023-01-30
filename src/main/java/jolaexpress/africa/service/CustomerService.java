@@ -3,17 +3,17 @@ package jolaexpress.africa.service;
 import jolaexpress.africa.data.dto.request.CustomerRegistrationRequest;
 import jolaexpress.africa.data.dto.response.CustomerRegistrationResponse;
 import jolaexpress.africa.data.model.Customer;
-import org.springframework.stereotype.Service;
+import jolaexpress.africa.exception.CustomerAlreadyExistException;
 
 import java.util.List;
-@Service
+
 public interface CustomerService {
 
-    CustomerRegistrationResponse register(CustomerRegistrationRequest request);
+    CustomerRegistrationResponse register(CustomerRegistrationRequest request) throws CustomerAlreadyExistException;
 
     List   <Customer> getAllCustomers ();
 
-    void updateProfile(Long customerId,String email );
+    void updateProfile(Long customerId,String email ) throws CustomerAlreadyExistException;
 
     void deleteCustomer(Long customerId);
 }
