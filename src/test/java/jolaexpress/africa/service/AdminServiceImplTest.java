@@ -51,7 +51,6 @@ class AdminServiceImplTest {
         assertThat(adminRequest.getPassword()).isEqualTo("2222");
         log.info("password changed -> {}",adminRequest.getPassword());
     }
-
     @Test
     void deleteAdmin() throws AdminAlreadyExistException {
         adminService.register(adminRequest);
